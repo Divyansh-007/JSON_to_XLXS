@@ -1,3 +1,4 @@
+// data to be converted
 const data = [{
     firstName: 'John',
     lastName: 'Bailey',
@@ -50,13 +51,16 @@ const data = [{
     paymentsMade: 1000
 }];
   
+// importing exceljs
 const Excel = require('exceljs');
   
 // need to create a workbook object. Almost everything in ExcelJS is based off of the workbook object.
 let workbook = new Excel.Workbook();
   
+// adding a worksheet
 let worksheet = workbook.addWorksheet('Debtors');
-  
+
+// defining columns
 worksheet.columns = [
     {header: 'First Name', key: 'firstName'},
     {header: 'Last Name', key: 'lastName'},
@@ -94,9 +98,10 @@ data.forEach((e, index) => {
     });
 });
   
+// count of number of rows
 const totalNumberOfRows = worksheet.rowCount
   
-// Add the total Rows
+// Add the total of each column
 worksheet.addRow([
     '',
     'Total',
@@ -167,7 +172,7 @@ totalCell.alignment = {horizontal: 'center'}
 // Create a freeze pane, which means we'll always see the header as we scroll around.
 worksheet.views = [
     { state: 'frozen', xSplit: 0, ySplit: 1, activeCell: 'B2' }
-]
+];
   
 // Keep in mind that reading and writing is promise based.
-workbook.xlsx.writeFile('Debtors.xlsx')
+workbook.xlsx.writeFile('Debtors.xlsx');
