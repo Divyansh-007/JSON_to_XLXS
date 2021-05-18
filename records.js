@@ -54,15 +54,24 @@ let workbook = new Excel.Workbook();
 // adding a worksheet
 let worksheet = workbook.addWorksheet(`${date}`);
 
+let keys = Object.keys(data[0]);
+console.log(keys);
+
+let columnList = [];
+keys.forEach((key) => {columnList.push({header: key.toUpperCase(), key: key})});
+
+console.log(columnList);
+
 // defining columns
-worksheet.columns = [
-    { header: 'CR No', key: 'crno' },
-    { header: 'Name', key: 'name' },
-    { header: 'Age', key: 'age' },
-    { header: 'Sex', key: 'sex' },
-    { header: 'Assignment', key: 'topics' },
-    { header: '', key: 'work' }
-];
+worksheet.columns = columnList;
+// worksheet.columns = [
+//     { header: 'CR No', key: 'crno' },
+//     { header: 'Name', key: 'name' },
+//     { header: 'Age', key: 'age' },
+//     { header: 'Sex', key: 'sex' },
+//     { header: 'Assignment', key: 'topics' },
+//     { header: '', key: 'work' }
+// ];
 
 // force the columns to be at least as long as their header row.
 // Have to take this approach because ExcelJS doesn't have an autofit property.
