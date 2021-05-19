@@ -86,6 +86,7 @@ worksheet.columns.forEach(column => {
 // Make the header bold.
 // Note: in Excel the rows are 1 based, meaning the first row is 1 instead of 0.
 worksheet.getRow(1).font = { bold: true };
+worksheet.getRow(1).alignment = { horizontal: 'center'  };
 
 // Dump all the data into Excel
 data.forEach((e, index) => {
@@ -104,9 +105,9 @@ worksheet.addRow(['',`Total = ${data.length}`]);
 worksheet.eachRow({ includeEmpty: false }, function (row, rowNumber) {
     const columns = ['A','B', 'C', 'D', 'E', 'F'];
 
-    columns.forEach((v) => {
-        worksheet.getCell(`${v}1`).alignment = {horizontal: 'center'}
-    });
+    // columns.forEach((v) => {
+    //     worksheet.getCell(`${v}1`).alignment = {horizontal: 'center'}
+    // });
 
     worksheet.getCell(`A${rowNumber}`).alignment = {horizontal: 'center'}
     worksheet.getCell(`C${rowNumber}`).alignment = {horizontal: 'center'}
