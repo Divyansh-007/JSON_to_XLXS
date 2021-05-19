@@ -46,6 +46,8 @@ const data = [
 const Excel = require('exceljs');
 const path = require('path');
 
+// 
+let area = 'academics';
 // date
 let date = '18.05.2021';
 // need to create a workbook object. Almost everything in ExcelJS is based off of the workbook object.
@@ -117,5 +119,4 @@ worksheet.views = [
 ];
 
 // Keep in mind that reading and writing is promise based.
-workbook.xlsx.writeFile(path.join(__dirname, `/reports/Academics_${date}.xlsx`));
-
+workbook.xlsx.writeFile(path.join(__dirname, `/reports/${area}_${date}.xlsx`));
